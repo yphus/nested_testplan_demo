@@ -1,0 +1,101 @@
+id: always-pass
+command: true
+flags: simple
+
+id: always-fail
+command: true
+flags: simple
+
+#############
+# Example 1 #
+#############
+
+unit: test plan
+id: foo_tp_1
+_name: Foo test plan 1
+_description: This test plan contains generic tests + 2 new tests
+include:
+    always-pass       certification-status=blocker
+    always-fail
+nested_part:
+    baz_tp
+
+#############
+# Example 2 #
+#############
+
+unit: test plan
+id: foo_tp_part1
+_name: Foo test plan part 1
+_description: This test plan contains part 1
+estimated_duration: 1m
+include:
+    always-pass       certification-status=blocker
+
+unit: test plan
+id: foo_tp_part2
+_name: Foo test plan part 2
+_description: This test plan contains part 2
+estimated_duration: 1m
+include:
+    always-fail
+
+unit: test plan
+id: foo_tp_2
+_name: Foo test plan 2
+_description:
+ This test plan contains generic tests + 2 new tests (but ordered differently)
+include:
+nested_part:
+    foo_tp_part1
+    baz_tp
+    foo_tp_part2
+
+#############
+# Example 3 #
+#############
+
+unit: test plan
+id: foo_tp_3
+_name: Foo test plan 3
+_description: This test plan contains generic tests + 2 new tests + overrides
+include:
+    always-pass       certification-status=blocker
+    always-fail
+nested_part:
+    baz_tp
+certification_status_overrides:
+    apply non-blocker to hello
+category_overrides:
+    apply 2013.com.canonical.plainbox::audio to hello
+
+#############
+# Example 4 #
+#############
+
+unit: test plan
+id: foo_tp_4
+_name: Foo test plan 4
+_description:
+ This test plan contains generic tests + 2 new tests + 2 tests from a
+ different namespace provider
+include:
+    always-pass       certification-status=blocker
+    always-fail
+nested_part:
+    baz_tp
+    2013.com.ubuntu::bar_tp
+
+#############
+# Example 5 #
+#############
+
+unit: test plan
+id: foo_tp_5
+_name: Foo test plan 5
+_description: This test plan is built from multiple level of nested test plans
+include:
+    always-pass       certification-status=blocker
+    always-fail
+nested_part:
+    baz_tp_2

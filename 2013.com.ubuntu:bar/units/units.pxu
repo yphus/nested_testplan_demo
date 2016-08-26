@@ -1,0 +1,16 @@
+id: sleep
+command: sleep 1
+flags: simple
+
+id: uname
+command: uname -a
+flags: simple
+
+unit: test plan
+id: bar_tp
+_name: bar test plan
+_description: This test plan contains bar test cases
+estimated_duration: 1m
+include:
+    sleep
+    uname

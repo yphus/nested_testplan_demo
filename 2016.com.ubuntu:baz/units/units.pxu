@@ -1,0 +1,43 @@
+id: hello
+command: echo hello
+flags: simple
+
+id: bye
+command: echo bye
+flags: simple
+
+id: mandatory
+command: true
+flags: simple
+
+id: bootstrap
+command: echo os: ubuntu
+plugin: resource
+flags: simple
+
+unit: test plan
+id: baz_tp
+_name: Generic baz test plan
+_description: This test plan contains generic test cases
+estimated_duration: 1m
+include:
+    hello       certification-status=blocker
+    bye         certification-status=non-blocker
+mandatory_include:
+    mandatory   certification-status=blocker
+bootstrap_include:
+    bootstrap
+
+unit: test plan
+id: baz_tp_2
+_name: Generic baz test plan 2
+_description: This test plan contains generic test cases + a nested part
+include:
+    hello       certification-status=blocker
+    bye         certification-status=non-blocker
+mandatory_include:
+    mandatory   certification-status=blocker
+bootstrap_include:
+    bootstrap
+nested_part:
+    2013.com.ubuntu::bar_tp

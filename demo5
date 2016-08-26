@@ -1,0 +1,11 @@
+#!/usr/bin/env checkbox-cli
+
+[launcher]
+launcher_version = 1
+
+[test plan]
+unit = 2016.com.ubuntu::foo_tp_5
+forced = yes
+
+[test selection]
+forced = yes
