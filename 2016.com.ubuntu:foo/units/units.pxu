@@ -99,3 +99,19 @@ include:
     always-fail
 nested_part:
     baz_tp_2
+
+#############
+# Example 6 #
+#############
+
+unit: test plan
+id: foo_tp_6
+_name: Foo test plan 6
+_description: This test plan contains generic tests + 2 new tests - hello job
+include:
+    always-pass       certification-status=blocker
+    always-fail
+exclude:
+    hello
+nested_part:
+    baz_tp
